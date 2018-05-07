@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="Shift_JIS" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="WebSample">
+    <property environment="env"/>
+    <property name="ECLIPSE_HOME" value="../../eclipse/"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="9"/>
+    <property name="source" value="9"/>
+    <path id="Apache Tomcat v9.0 [Apache Tomcat v9.0].libraryclasspath">
+        <pathelement location="C:/apache-tomcat-9.0.7/lib/annotations-api.jar"/>
+        <pathelement location="C:/apache-tomcat-9.0.7/lib/catalina-ant.jar"/>
+        <pathelement location="C:/apache-tomcat-9.0.7/lib/catalina-ha.jar"/>
+        <pathelement location="C:/apache-tomcat-9.0.7/lib/catalina-storeconfig.jar"/>
+        <pathelement location="C:/apache-tomcat-9.0.7/lib/catalina-tribes.jar"/>
+        <pathelement location="C:/apache-tomcat-9.0.7/lib/catalina.jar"/>
+        <pathelement location="C:/apache-tomcat-9.0.7/lib/ecj-4.6.3.jar"/>
+        <pathelement location="C:/apache-tomcat-9.0.7/lib/el-api.jar"/>
+        <pathelement location="C:/apache-tomcat-9.0.7/lib/jasper-el.jar"/>
+        <pathelement location="C:/apache-tomcat-9.0.7/lib/jasper.jar"/>
+        <pathelement location="C:/apache-tomcat-9.0.7/lib/jaspic-api.jar"/>
+        <pathelement location="C:/apache-tomcat-9.0.7/lib/jsp-api.jar"/>
+        <pathelement location="C:/apache-tomcat-9.0.7/lib/servlet-api.jar"/>
+        <pathelement location="C:/apache-tomcat-9.0.7/lib/tomcat-api.jar"/>
+        <pathelement location="C:/apache-tomcat-9.0.7/lib/tomcat-coyote.jar"/>
+        <pathelement location="C:/apache-tomcat-9.0.7/lib/tomcat-dbcp.jar"/>
+        <pathelement location="C:/apache-tomcat-9.0.7/lib/tomcat-i18n-es.jar"/>
+        <pathelement location="C:/apache-tomcat-9.0.7/lib/tomcat-i18n-fr.jar"/>
+        <pathelement location="C:/apache-tomcat-9.0.7/lib/tomcat-i18n-ja.jar"/>
+        <pathelement location="C:/apache-tomcat-9.0.7/lib/tomcat-jdbc.jar"/>
+        <pathelement location="C:/apache-tomcat-9.0.7/lib/tomcat-jni.jar"/>
+        <pathelement location="C:/apache-tomcat-9.0.7/lib/tomcat-util-scan.jar"/>
+        <pathelement location="C:/apache-tomcat-9.0.7/lib/tomcat-util.jar"/>
+        <pathelement location="C:/apache-tomcat-9.0.7/lib/tomcat-websocket.jar"/>
+        <pathelement location="C:/apache-tomcat-9.0.7/lib/websocket-api.jar"/>
+        <pathelement location="C:/jdk-9.0.4/lib/mysql-connector-java-5.1.46-bin.jar"/>
+    </path>
+
+    <path id="classpath.tools">
+        <pathelement location="C:/jdk-9.0.4/lib/mysql-connector-java-5.1.46-bin.jar"/>
+    </path>
+
+    <path id="Web App ライブラリー.libraryclasspath"/>
+    <path id="EAR ライブラリー.libraryclasspath"/>
+    <path id="WebSample.classpath">
+        <pathelement location="build/classes"/>
+        <path refid="Apache Tomcat v9.0 [Apache Tomcat v9.0].libraryclasspath"/>
+        <path refid="Web App ライブラリー.libraryclasspath"/>
+        <path refid="EAR ライブラリー.libraryclasspath"/>
+    </path>
+
+    <target name="init">
+        <mkdir dir="build/classes"/>
+        <copy includeemptydirs="false" todir="build/classes">
+            <fileset dir="src">
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="build/classes"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="build/classes" includeantruntime="false" source="${source}" target="${target}">
+            <src path="src"/>
+            <classpath refid="WebSample.classpath"/>
+            <classpath refid="classpath.tools"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+        <copy todir="${ant.library.dir}">
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </copy>
+        <unzip dest="${ant.library.dir}">
+            <patternset includes="jdtCompilerAdapter.jar"/>
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </unzip>
+    </target>
+    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+        <antcall target="build"/>
+    </target>
+
+    <target name="make-deploy-files">
+        <mkdir dir="build/deploy"/>
+        <copy todir="build/deploy">
+            <fileset dir="WebContent"/>
+        </copy>
+        <copy todir="build/deploy/WEB-INF/classes">
+            <fileset dir="build/classes"/>
+        </copy>
+    </target>
+	<target depends="build" name="deploy">
+		<war destfile="C:/apache-tomcat-9.0.7/webapps/WebSample.war" webxml="WebContent/WEB-INF/web.xml">
+			<fileset dir="WebContent" />
+			<classes dir="build/classes" />
+		</war>
+	</target>
+
+</project>
