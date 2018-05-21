@@ -9,7 +9,7 @@
 
 <body>
 <form action="/WebSample/RegisterUser" method="post">
-ログインID：<input type="text" name="id"><br>
+ログインID：<input type="text" name="id">
 パスワード：<input type="text" name="pass"><br>
 名前：<input type="text" name="name"><br>
 <br>
