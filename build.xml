@@ -60,7 +60,8 @@
         <delete dir="build/classes"/>
     </target>
     <target depends="clean" name="cleanall"/>
-    <target depends="build-subprojects,build-project" name="build"/>
+<!--    <target depends="build-subprojects,build-project" name="build"/> -->
+    <target depends="build-subprojects,build-war" name="build"/>
     <target name="build-subprojects"/>
     <target depends="init" name="build-project">
         <echo message="${ant.project.name}: ${ant.file}"/>
@@ -83,4 +84,16 @@
         <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
         <antcall target="build"/>
     </target>
+
+  <!-- .warファイル作成 -->
+  <target depends="build-project" name="build-war">
+    <war destfile="war/${ant.project.name}.war"
+        webxml="WebContent/WEB-INF/web.xml">
+      <fileset dir="WebContent">
+        <include name="**/*" />
+      </fileset>
+      <classes dir="build/classes" />
+    </war>
+  </target>
+
 </project>
