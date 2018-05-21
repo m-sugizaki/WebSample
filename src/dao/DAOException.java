@@ -6,7 +6,7 @@
 package dao;
  
 /**
- * ƒf[ƒ^ƒAƒNƒZƒXƒIƒuƒWƒFƒNƒg—áŠO
+ * ãƒ‡ãƒ¼ã‚¿ã‚¢ã‚¯ã‚»ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆä¾‹å¤–
  */
 public class DAOException extends Exception {
     /**

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+<Resource name="jdbc/JNDI" auth="Container" type="javax.sql.DataSource"
+driverClassName="com.mysql.jdbc.Driver"
+url="jdbc:mysql://localhost:3306/test_db?useSSL=false&amp;autoReconnect=true"
+username="administrator" password="2335Cube!" />
+</Context>

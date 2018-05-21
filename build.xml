@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="Shift_JIS" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- WARNING: Eclipse auto-generated file.
               Any modifications will be overwritten.
               To include a user specific buildfile here, simply create one in the same
@@ -7,8 +7,8 @@
     <property environment="env"/>
     <property name="ECLIPSE_HOME" value="../../eclipse/"/>
     <property name="debuglevel" value="source,lines,vars"/>
-    <property name="target" value="9"/>
-    <property name="source" value="9"/>
+    <property name="target" value="1.8"/>
+    <property name="source" value="1.8"/>
     <path id="Apache Tomcat v9.0 [Apache Tomcat v9.0].libraryclasspath">
         <pathelement location="C:/apache-tomcat-9.0.7/lib/annotations-api.jar"/>
         <pathelement location="C:/apache-tomcat-9.0.7/lib/catalina-ant.jar"/>
@@ -22,6 +22,7 @@
         <pathelement location="C:/apache-tomcat-9.0.7/lib/jasper.jar"/>
         <pathelement location="C:/apache-tomcat-9.0.7/lib/jaspic-api.jar"/>
         <pathelement location="C:/apache-tomcat-9.0.7/lib/jsp-api.jar"/>
+        <pathelement location="C:/apache-tomcat-9.0.7/lib/mysql-connector-java-5.1.46-bin.jar"/>
         <pathelement location="C:/apache-tomcat-9.0.7/lib/servlet-api.jar"/>
         <pathelement location="C:/apache-tomcat-9.0.7/lib/tomcat-api.jar"/>
         <pathelement location="C:/apache-tomcat-9.0.7/lib/tomcat-coyote.jar"/>
@@ -35,22 +36,18 @@
         <pathelement location="C:/apache-tomcat-9.0.7/lib/tomcat-util.jar"/>
         <pathelement location="C:/apache-tomcat-9.0.7/lib/tomcat-websocket.jar"/>
         <pathelement location="C:/apache-tomcat-9.0.7/lib/websocket-api.jar"/>
-        <pathelement location="C:/jdk-9.0.4/lib/mysql-connector-java-5.1.46-bin.jar"/>
     </path>
-
-    <path id="classpath.tools">
-        <pathelement location="C:/jdk-9.0.4/lib/mysql-connector-java-5.1.46-bin.jar"/>
+    <path id="Web App 繝ｩ繧､繝悶Λ繝ｪ繝ｼ.libraryclasspath">
+        <pathelement location="WebContent/WEB-INF/lib/mysql-connector-java-5.1.46-bin.jar"/>
     </path>
-
-    <path id="Web App ライブラリー.libraryclasspath"/>
-    <path id="EAR ライブラリー.libraryclasspath"/>
+    <path id="EAR 繝ｩ繧､繝悶Λ繝ｪ繝ｼ.libraryclasspath"/>
     <path id="WebSample.classpath">
         <pathelement location="build/classes"/>
         <path refid="Apache Tomcat v9.0 [Apache Tomcat v9.0].libraryclasspath"/>
-        <path refid="Web App ライブラリー.libraryclasspath"/>
-        <path refid="EAR ライブラリー.libraryclasspath"/>
+        <path refid="Web App 繝ｩ繧､繝悶Λ繝ｪ繝ｼ.libraryclasspath"/>
+        <path refid="EAR 繝ｩ繧､繝悶Λ繝ｪ繝ｼ.libraryclasspath"/>
+        <pathelement location="C:/apache-tomcat-9.0.7/lib/mysql-connector-java-5.1.46-bin.jar"/>
     </path>
-
     <target name="init">
         <mkdir dir="build/classes"/>
         <copy includeemptydirs="false" todir="build/classes">
@@ -70,7 +67,6 @@
         <javac debug="true" debuglevel="${debuglevel}" destdir="build/classes" includeantruntime="false" source="${source}" target="${target}">
             <src path="src"/>
             <classpath refid="WebSample.classpath"/>
-            <classpath refid="classpath.tools"/>
         </javac>
     </target>
     <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
@@ -87,21 +83,4 @@
         <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
         <antcall target="build"/>
     </target>
-
-    <target name="make-deploy-files">
-        <mkdir dir="build/deploy"/>
-        <copy todir="build/deploy">
-            <fileset dir="WebContent"/>
-        </copy>
-        <copy todir="build/deploy/WEB-INF/classes">
-            <fileset dir="build/classes"/>
-        </copy>
-    </target>
-	<target depends="build" name="deploy">
-		<war destfile="C:/apache-tomcat-9.0.7/webapps/WebSample.war" webxml="WebContent/WEB-INF/web.xml">
-			<fileset dir="WebContent" />
-			<classes dir="build/classes" />
-		</war>
-	</target>
-
 </project>

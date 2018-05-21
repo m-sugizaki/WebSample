@@ -1,67 +1,74 @@
 package dao;
  
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
+//import java.sql.Connection;
+//import java.sql.DriverManager;
+//import java.sql.SQLException;
  
 public class ConnectionManager {
  
-    // URLEƒ†[ƒU–¼EƒpƒXƒ[ƒh‚Ìİ’è
-    private final static String URL = "jdbc:mysql://localhost:3306/webdb?useSSL=false";
-    private final static String USER = "root";
-    private final static String PASSWORD = "root";
-    // ƒRƒlƒNƒVƒ‡ƒ“ƒIƒuƒWƒFƒNƒg
+    // URLãƒ»ãƒ¦ãƒ¼ã‚¶åãƒ»ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ã®è¨­å®š
+    private final static String URL = "jdbc:mysql://localhost:3306/test_db?useSSL=false";
+    private final static String USER = "administrator";
+    private final static String PASSWORD = "2335Cube!";
+    // ã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
     private Connection connection = null;
  
-     // ‚±‚ÌƒNƒ‰ƒX‚É—Bˆê‚ÌƒCƒ“ƒXƒ^ƒ“ƒX
+     // ã“ã®ã‚¯ãƒ©ã‚¹ã«å”¯ä¸€ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹
     private static ConnectionManager instance = new ConnectionManager();
  
     /*
-     * static‰Šú‰»q
+     * staticåˆæœŸåŒ–å­
      */
     static {
-        // JDBCƒhƒ‰ƒCƒo‚Ìƒ[ƒh
+        // JDBCãƒ‰ãƒ©ã‚¤ãƒã®ãƒ­ãƒ¼ãƒ‰
         String drv = "com.mysql.jdbc.Driver";
         try {
-            Class.forName(drv);
-        } catch (ClassNotFoundException e) {
-            System.out.println("ƒhƒ‰ƒCƒo‚ª‚ ‚è‚Ü‚¹‚ñ" + e.getMessage());
+        	System.out.println(drv);
+//            Class.forName(drv);
+        	System.out.println("newInstance");
+//        	Class.forName("com.mysql.jdbc.Driver").newInstance(); 
+        	Class.forName(drv).newInstance();
+        } catch (Exception e) {
+        	System.out.println("Oh my GOD!");
+        	System.out.println(drv);
+            System.out.println("ãƒ‰ãƒ©ã‚¤ãƒãŒã‚ã‚Šã¾ã›ã‚“" + e.getMessage());
         }
     }
  
     /**
-     * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+     * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
      */
     private ConnectionManager() {   }
     /*
-     * ƒCƒ“ƒXƒ^ƒ“ƒXæ“¾ƒƒ\ƒbƒh
+     * ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹å–å¾—ãƒ¡ã‚½ãƒƒãƒ‰
      */
     public static ConnectionManager getInstance() { return instance; }
  
     /**
-     * DB‚ÌÚ‘±     *
-     * @return ƒRƒlƒNƒVƒ‡ƒ“
+     * DBã®æ¥ç¶š     *
+     * @return ã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³
      * @throws Exception
      */
     public synchronized Connection getConnection() throws DAOException {
-        //  ƒRƒlƒNƒVƒ‡ƒ“‚ÌŠm—§
+        //  ã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³ã®ç¢ºç«‹
         try {
             connection = DriverManager.getConnection(URL, USER, PASSWORD);
         } catch (SQLException e) {
             connection = null;
-            throw new DAOException("[conect]ˆÙí", e);
+            throw new DAOException("[conect]ç•°å¸¸", e);
         }
         return connection;
     }
  
     /**
-     * DB‚ÌØ’f
+     * DBã®åˆ‡æ–­
      */
     public void closeConnection() throws DAOException{
         try {
             if (connection != null) {   connection.close(); }
         } catch (SQLException e) {
-            throw new DAOException("[closeConnection]ˆÙí", e);
+            throw new DAOException("[closeConnection]ç•°å¸¸", e);
         } finally {
             connection = null;
         }

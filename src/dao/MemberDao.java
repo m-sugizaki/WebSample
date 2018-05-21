@@ -1,10 +1,11 @@
 package dao;
  
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+//import java.sql.Connection;
+//import java.sql.PreparedStatement;
+//import java.sql.ResultSet;
+//import java.sql.SQLException;
+//import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
  
@@ -12,28 +13,28 @@ import model.User;
  
 public class MemberDao {
  
-    private Connection con = null;  // ƒRƒlƒNƒVƒ‡ƒ“ƒIƒuƒWƒFƒNƒg
-    private Statement stmt = null;  // ƒXƒe[ƒgƒƒ“ƒgƒIƒuƒWƒFƒNƒg
-    private ConnectionManager cm; // ƒRƒlƒNƒVƒ‡ƒ“ƒ}ƒl[ƒWƒƒ[
+    private Connection con = null;  // ã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+    private Statement stmt = null;  // ã‚¹ãƒ†ãƒ¼ãƒˆãƒ¡ãƒ³ãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+    private ConnectionManager cm; // ã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
  
-    // Connection‚Ìæ“¾
+    // Connectionã®å–å¾—
     private void getConnection() throws DAOException{
         if ( this.con != null ){ return;    }
         cm = ConnectionManager.getInstance();
-        con = cm.getConnection(); // ƒf[ƒ^ƒx[ƒX‚Ö‚ÌÚ‘±‚Ìæ“¾
+        con = cm.getConnection(); // ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹ã¸ã®æ¥ç¶šã®å–å¾—
     }
  
-    // Statement‚Ìæ“¾
+    // Statementã®å–å¾—
     private void createStmt() throws DAOException{
         if ( this.stmt != null){    return; }
         try {
             stmt =con.createStatement();
-        } catch (SQLException e) {  // SQL‚ÉŠÖ‚·‚é—áŠOˆ—
-            throw new DAOException("[createStmt]ˆÙí", e);
+        } catch (SQLException e) {  // SQLã«é–¢ã™ã‚‹ä¾‹å¤–å‡¦ç†
+            throw new DAOException("[createStmt]ç•°å¸¸", e);
         }
     }
  
-    // ƒf[ƒ^‚ğ’Ç‰Á
+    // ãƒ‡ãƒ¼ã‚¿ã‚’è¿½åŠ 
     public int insertMember(User user) throws DAOException {
         getConnection();
         int count = 0;
@@ -48,7 +49,7 @@ public class MemberDao {
             pstmt.setString(3, pass);
             count += pstmt.executeUpdate();
         } catch(SQLException e) {
-            throw new DAOException("[UserDAO#insertMember]ˆÙí", e);
+            throw new DAOException("[UserDAO#insertMember]ç•°å¸¸", e);
         } finally {
             close();
         }
@@ -59,7 +60,7 @@ public class MemberDao {
         try {
             if (stmt != null) { stmt.close(); }
         } catch (SQLException e) {
-            throw new DAOException("[closeStatement]ˆÙí", e);
+            throw new DAOException("[closeStatement]ç•°å¸¸", e);
         } finally {
             this.stmt = null;
             this.cm = null;

@@ -7,12 +7,12 @@ public class RegisterUserLogic {
   MemberDao memberDao = new MemberDao();
     public boolean exute(User user){
         boolean registCheck = false;
-        //“o˜^ˆ—
+        //ç™»éŒ²å‡¦ç†
         try {
             memberDao.insertMember(user);
             registCheck = true;
         } catch (DAOException e) {
-            // TODO ©“®¶¬‚³‚ê‚½ catch ƒuƒƒbƒN
+            // TODO è‡ªå‹•ç”Ÿæˆã•ã‚ŒãŸ catch ãƒ–ãƒ­ãƒƒã‚¯
             e.printStackTrace();
         }
         return registCheck;

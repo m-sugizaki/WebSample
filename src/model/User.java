@@ -4,7 +4,7 @@ import java.io.Serializable;
  
 public class User implements Serializable {
  
-    //ƒtƒB[ƒ‹ƒh
+    //ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
     private String id;
     private String name;
     private String pass;
@@ -16,7 +16,7 @@ public class User implements Serializable {
         this.pass = pass;
     }
  
-    //ƒAƒNƒZƒbƒT
+    //ã‚¢ã‚¯ã‚»ãƒƒã‚µ
     public String getId() {
         return id;
     }

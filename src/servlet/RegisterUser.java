@@ -35,37 +35,37 @@ public class RegisterUser extends HttpServlet {
 //      // TODO Auto-generated method stub
 //      response.getWriter().append("Served at: ").append(request.getContextPath());
  
-        //ƒtƒHƒ[ƒhæ
+        //ãƒ•ã‚©ãƒ¯ãƒ¼ãƒ‰å…ˆ
         String forwardPath = null;
  
-        //ƒT[ƒuƒŒƒbƒgƒNƒ‰ƒX‚Ì“®ì‚ğŒˆ’è‚·‚éuactionv‚Ì’l‚ğ
-        //ƒŠƒNƒGƒXƒgƒpƒ‰ƒ[ƒ^‚©‚çæ“¾
+        //ã‚µãƒ¼ãƒ–ãƒ¬ãƒƒãƒˆã‚¯ãƒ©ã‚¹ã®å‹•ä½œã‚’æ±ºå®šã™ã‚‹ã€Œactionã€ã®å€¤ã‚’
+        //ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‹ã‚‰å–å¾—
         String action = request.getParameter("action");
  
-        //u“o˜^‚ÌŠJnv‚ğƒŠƒNƒGƒXƒg‚³‚ê‚½‚Æ‚«‚Ìˆ—
+        //ã€Œç™»éŒ²ã®é–‹å§‹ã€ã‚’ãƒªã‚¯ã‚¨ã‚¹ãƒˆã•ã‚ŒãŸã¨ãã®å‡¦ç†
         if(action == null){
-            //ƒtƒHƒ[ƒhæ‚ğİ’è
+            //ãƒ•ã‚©ãƒ¯ãƒ¼ãƒ‰å…ˆã‚’è¨­å®š
             forwardPath = "/WEB-INF/jsp/registerForm.jsp";
         }
-        //“o˜^Šm”F‰æ–Ê‚©‚çu“o˜^Àsv‚ğƒŠƒNƒGƒXƒg‚³‚ê‚½‚Æ‚«‚Ìˆ—
+        //ç™»éŒ²ç¢ºèªç”»é¢ã‹ã‚‰ã€Œç™»éŒ²å®Ÿè¡Œã€ã‚’ãƒªã‚¯ã‚¨ã‚¹ãƒˆã•ã‚ŒãŸã¨ãã®å‡¦ç†
         else if(action.equals("done")){
-            //ƒZƒbƒVƒ‡ƒ“ƒXƒR[ƒv‚É•Û‘¶‚³‚ê‚½“o˜^ƒ†[ƒU‚ğ
+            //ã‚»ãƒƒã‚·ãƒ§ãƒ³ã‚¹ã‚³ãƒ¼ãƒ—ã«ä¿å­˜ã•ã‚ŒãŸç™»éŒ²ãƒ¦ãƒ¼ã‚¶ã‚’
             HttpSession session = request.getSession();
             User registerUser = (User)session.getAttribute("registerUser");
  
-            //“o˜^ˆ—‚ÌŒÄ‚Ño‚µ
+            //ç™»éŒ²å‡¦ç†ã®å‘¼ã³å‡ºã—
             RegisterUserLogic logic = new RegisterUserLogic();
             logic.exute(registerUser);
  
-            //•s—v‚Æ‚È‚Á‚½ƒZƒbƒVƒ‡ƒ“ƒXƒR[ƒv“à‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğíœ
+            //ä¸è¦ã¨ãªã£ãŸã‚»ãƒƒã‚·ãƒ§ãƒ³ã‚¹ã‚³ãƒ¼ãƒ—å†…ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’å‰Šé™¤
             session.removeAttribute("registerUser");
  
-            //“o˜^Œã‚ÌƒtƒHƒ[ƒhæ‚ğİ’è
+            //ç™»éŒ²å¾Œã®ãƒ•ã‚©ãƒ¯ãƒ¼ãƒ‰å…ˆã‚’è¨­å®š
             forwardPath = "/WEB-INF/jsp/registerDone.jsp";
  
         }
  
-        // İ’è‚³‚ê‚½ƒtƒHƒ[ƒhæ‚ğİ’è
+        // è¨­å®šã•ã‚ŒãŸãƒ•ã‚©ãƒ¯ãƒ¼ãƒ‰å…ˆã‚’è¨­å®š
         RequestDispatcher dispatcher = request.getRequestDispatcher(forwardPath);
         dispatcher.forward(request, response);
     }
@@ -77,20 +77,20 @@ public class RegisterUser extends HttpServlet {
 //      // TODO Auto-generated method stub
 //      doGet(request, response);
  
-        //ƒŠƒNƒGƒXƒgƒpƒ‰ƒ[ƒ^‚Ìæ“¾
+        //ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®å–å¾—
         request.setCharacterEncoding("UTF-8");
         String id = request.getParameter("id");
         String name = request.getParameter("name");
         String pass = request.getParameter("pass");
  
-        //“o˜^‚·‚éƒ†[ƒU‚Ìî•ñ‚ğİ’è
+        //ç™»éŒ²ã™ã‚‹ãƒ¦ãƒ¼ã‚¶ã®æƒ…å ±ã‚’è¨­å®š
         User registerUser = new User(id, name, pass);
  
-        //ƒZƒbƒVƒ‡ƒ“ƒXƒR[ƒv‚É“o˜^ƒ†[ƒU‚ğ•Û‘¶
+        //ã‚»ãƒƒã‚·ãƒ§ãƒ³ã‚¹ã‚³ãƒ¼ãƒ—ã«ç™»éŒ²ãƒ¦ãƒ¼ã‚¶ã‚’ä¿å­˜
         HttpSession session = request.getSession();
         session.setAttribute("registerUser", registerUser);
  
-        //ƒtƒHƒ[ƒh
+        //ãƒ•ã‚©ãƒ¯ãƒ¼ãƒ‰
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/registerConfirm.jsp");
         dispatcher.forward(request, response);
     }
